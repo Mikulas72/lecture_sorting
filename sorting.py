@@ -46,6 +46,41 @@ def bubble_sort(number_array):
                 number_array[number_index], number_array[number_index + 1] = number_array[number_index + 1], number_array[number_index]
     return number_array
 
+def insertion_sort(number_array):
+    n = len(number_array)
+    for i in range(1, n):
+        key = number_array[i]
+        j = i - 1
+        while j >= 0 and number_array[j] > key:
+            number_array[j + 1] = number_array[j]
+            j = j - 1
+        number_array[j + 1] = key
+    return number_array
+
+
+def testovani_implementovanych_funkci():
+    my_list = [3, 8, 1, 2, 32]
+    my_list.sort()
+    print(my_list)
+
+    my_list = [3, 8, 1, 2, 32]
+    my_list = sorted(my_list)
+    print(my_list)
+
+    my_list = [3, 8, 1, 2, 32]
+    my_list = sorted(my_list, reverse=True)
+    print(my_list)
+
+    list_of_words = ["MOO", "meeeoow", "woof", "BZZZZZZ"]
+    print(list_of_words)
+    list_of_words = sorted(list_of_words, key=len)
+    print(list_of_words)
+
+    list_of_words = ["MOO", "meeeoow", "woof", "BZZZZZZ"]
+    list_of_words = sorted(list_of_words, key=str.lower)
+    print(list_of_words)
+
+    return
 
 def main():
     data = read_data("numbers.csv")
@@ -53,11 +88,12 @@ def main():
     sorted_array = selection_sort(data["series_1"].copy())
     sorted_array_reverse = selection_sort(data["series_1"].copy(), direction="descending")
     bubble_array = bubble_sort(data["series_1"].copy())
+    insertion_array = insertion_sort(data["series_1"].copy())
     print(data["series_1"])
     print(sorted_array)
-    print(sorted_array_reverse)
-    print(bubble_array)
-
+#   print(sorted_array_reverse)
+#   print(bubble_array)
+    print(insertion_array)
 
 if __name__ == '__main__':
     main()
